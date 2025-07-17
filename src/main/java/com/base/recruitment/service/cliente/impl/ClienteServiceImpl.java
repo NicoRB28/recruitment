@@ -35,21 +35,25 @@ public class ClienteServiceImpl implements ClienteService {
             Objects.nonNull(request.productoBancario()) && !request.productoBancario().isEmpty();
     private final ClienteRepository clienteRepository;
     private final ProductoRepository productoRepository;
-    private final DireccionRepository direccionRepository;
 
     @Override
     @Transactional
     public void registrar(RegistrarClientRequest request) {
         checkIfExists(() -> ClienteEntity.builder().dni(request.dni()).build());
         ClienteEntity clienteEntity = ClienteMappers.fromRegistrarClienteRequestToClienteEntity(request);
+        handleProducto(request, clienteEntity);
+        this.clienteRepository.save(clienteEntity);
+    }
+
+    private void handleProducto(RegistrarClientRequest request, ClienteEntity clienteEntity) {
         Set<ProductoEntity> productos = Set.of();
         if (hasProducto.test(request)) {
             productos = productoRepository.findByNombreIn(request.productoBancario());
+            if (productos.isEmpty()) {
+                throw new ClientServiceException("Error en los productos ingresados.", HttpStatus.BAD_REQUEST.value());
+            }
         }
-        if (!productos.isEmpty()) {
-            clienteEntity.setProductos(productos);
-        }
-        this.clienteRepository.save(clienteEntity);
+        clienteEntity.setProductos(productos);
     }
 
     @Override

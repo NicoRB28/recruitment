@@ -1,7 +1,10 @@
 package com.base.recruitment.dto.cliente.request;
 
+import lombok.Builder;
+
 import java.util.List;
 
+@Builder
 public record RegistrarClientRequest(
         Long dni,
         String nombre,
