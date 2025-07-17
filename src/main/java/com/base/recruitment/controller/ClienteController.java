@@ -1,6 +1,7 @@
  package com.base.recruitment.controller;
 
  import com.base.recruitment.dto.cliente.ClientDto;
+ import com.base.recruitment.dto.cliente.EditarClienteRequest;
  import com.base.recruitment.dto.cliente.request.RegistrarClientRequest;
  import com.base.recruitment.service.cliente.ClienteService;
  import lombok.RequiredArgsConstructor;
@@ -25,6 +26,24 @@ public class ClienteController {
     @GetMapping("/")
     public ResponseEntity<List<ClientDto>> getClientes() {
         List<ClientDto> clientes =  this.clienteService.getAll();
+        return ResponseEntity.ok(clientes);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ClientDto> update(@PathVariable long id, @RequestBody EditarClienteRequest request) {
+        ClientDto update = this.clienteService.update(id, request);
+        return ResponseEntity.ok(update);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable long id) {
+        this.clienteService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{producto}")
+    public ResponseEntity<List<ClientDto>> findByProducto(@PathVariable String producto) {
+        List<ClientDto> clientes = this.clienteService.getClientesWithProductoBancario(producto);
         return ResponseEntity.ok(clientes);
     }
 }
