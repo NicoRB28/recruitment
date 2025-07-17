@@ -1,7 +1,12 @@
 package com.base.recruitment.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Set;
 
@@ -10,12 +15,10 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @Entity
-@Table(name = "cliente")
+@Table(name = "cliente", uniqueConstraints = {@UniqueConstraint(name = "dni_unique", columnNames = {"dni"})})
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ClienteEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private Long dni;
     private String nombre;
     private String apellido;

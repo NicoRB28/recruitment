@@ -2,9 +2,10 @@ package com.base.recruitment.dto.cliente.request;
 
 import java.util.List;
 
-public record CreateClientRequest(
-        String dni,
+public record RegistrarClientRequest(
+        Long dni,
         String nombre,
+        String apellido,
         String calle,
         Long numero,
         Long codigoPostal,
