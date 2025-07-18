@@ -13,10 +13,10 @@ import java.util.Set;
 @Setter
 @Getter
 @Builder
-@AllArgsConstructor
 @Entity
 @Table(name = "cliente")
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class ClienteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

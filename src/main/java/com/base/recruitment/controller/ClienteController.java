@@ -46,4 +46,10 @@ public class ClienteController {
         List<ClientDto> clientes = this.clienteService.getClientesWithProductoBancario(producto);
         return ResponseEntity.ok(clientes);
     }
+
+    @GetMapping("/{id}/detalle")
+    public ResponseEntity<ClientDto> findById(@PathVariable Long id) {
+        ClientDto client = this.clienteService.getById(id);
+        return ResponseEntity.ok(client);
+    }
 }

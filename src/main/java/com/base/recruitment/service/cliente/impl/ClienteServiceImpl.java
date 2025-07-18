@@ -109,6 +109,13 @@ public class ClienteServiceImpl implements ClienteService {
                 .toList();
     }
 
+    @Override
+    public ClientDto getById(Long id) {
+        ClienteEntity cliente = this.clienteRepository.findById(id)
+                .orElseThrow(() -> new ClientServiceException("Cliente no registrado", HttpStatus.NOT_FOUND.value()));
+        return ClienteMappers.fromEntityToClientDto(cliente);
+    }
+
     private void checkIfExists(Supplier<ClienteEntity> clientSupplier) {
         Example<ClienteEntity> specification = Example.of(clientSupplier.get());
         boolean exists = clienteRepository.exists(specification);
@@ -116,5 +123,4 @@ public class ClienteServiceImpl implements ClienteService {
             throw new ClientServiceException("Cliente ya registrado.", HttpStatus.CONFLICT.value());
         }
     }
-
 }

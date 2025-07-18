@@ -12,4 +12,5 @@ public interface ClienteService {
     void delete(long id);
     List<ClientDto> getAll();
     List<ClientDto> getClientesWithProductoBancario(String producto);
+    ClientDto getById(Long id);
 }

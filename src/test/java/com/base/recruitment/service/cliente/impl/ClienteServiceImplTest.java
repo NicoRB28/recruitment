@@ -205,6 +205,21 @@ class ClienteServiceImplTest {
                 .hasSize(1);
     }
 
+    @Test
+    void getClienteById() {
+        ClienteEntity cliente = getCliente();
+
+        when(clienteRepository.findById(any()))
+                .thenReturn(Optional.of(cliente));
+
+        ClientDto actual = underTest.getById(1L);
+
+        assertThat(actual)
+                .isNotNull()
+                .extracting(ClientDto::dni, ClientDto::nombre)
+                .contains(30000123L, "Ricardo");
+    }
+
     private ClienteEntity getCliente() {
         return ClienteEntity.builder()
                 .id(1L)
