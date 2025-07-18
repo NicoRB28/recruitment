@@ -2,17 +2,20 @@
 FROM eclipse-temurin:17 as builder
 WORKDIR /app
 
-# Copy only the wrapper & pom.xml to download dependencies
+# Copy wrapper and POM first to leverage caching
 COPY .mvn/ .mvn/
 COPY mvnw pom.xml ./
 
-# Pre-download dependencies (this step is cached unless pom.xml changes)
+# Make sure the wrapper script is executable (for Linux)
+RUN chmod +x mvnw
+
+# Download dependencies
 RUN ./mvnw dependency:go-offline -B
 
-# Now copy the rest of the source code
+# Copy the rest of the app source code
 COPY src ./src
 
-# Package the application
+# Package the app (skip tests for faster build)
 RUN ./mvnw clean package -DskipTests
 
 # Step 2: Run the application
