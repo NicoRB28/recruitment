@@ -1,7 +1,7 @@
 package com.base.recruitment.service.cliente.impl;
 
 import com.base.recruitment.dto.cliente.ClientDto;
-import com.base.recruitment.dto.cliente.EditarClienteRequest;
+import com.base.recruitment.dto.cliente.request.EditarClienteRequest;
 import com.base.recruitment.dto.cliente.request.RegistrarClientRequest;
 import com.base.recruitment.exception.client.ClientServiceException;
 import com.base.recruitment.mapper.cliente.ClienteMappers;
@@ -9,7 +9,6 @@ import com.base.recruitment.model.ClienteEntity;
 import com.base.recruitment.model.DireccionEntity;
 import com.base.recruitment.model.ProductoEntity;
 import com.base.recruitment.repository.ClienteRepository;
-import com.base.recruitment.repository.DireccionRepository;
 import com.base.recruitment.repository.ProductoRepository;
 import com.base.recruitment.service.cliente.ClienteService;
 import jakarta.persistence.EntityNotFoundException;

@@ -1,7 +1,7 @@
 package com.base.recruitment.service.cliente;
 
 import com.base.recruitment.dto.cliente.ClientDto;
-import com.base.recruitment.dto.cliente.EditarClienteRequest;
+import com.base.recruitment.dto.cliente.request.EditarClienteRequest;
 import com.base.recruitment.dto.cliente.request.RegistrarClientRequest;
 
 import java.util.List;

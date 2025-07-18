@@ -1,12 +1,10 @@
 package com.base.recruitment.dto.cliente.request;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Builder;
 
 import java.util.List;
 
-@Builder
-public record RegistrarClientRequest(
+public record EditarClienteRequest(
         @NotNull(message = "El campo dni es requerido")
         Long dni,
         @NotNull(message = "El campo nombre es requerido.")
@@ -19,4 +17,6 @@ public record RegistrarClientRequest(
         String telefono,
         String celular,
         List<String> productoBancario
-) { }
+) {
+
+}
