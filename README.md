@@ -12,6 +12,11 @@
    ```bash
    docker-compose build
    ```
+> ⚠️ En caso de obtener un error como el siguiente:
+>  => ERROR [builder 6/8] RUN ./mvnw dependency:go-offline -B                                                        0.3s
+> es posible que al clonar el repositorio el archivo dockerfile tenga incompatibilidad con el
+> final de línea (CRLF/LF), basta con utilizar una herramienta como visual studio code para realizar el cambio de CRLF a LF
+> y volver a ejecutar.
 
 2. Una vez finalizado el proceso de build, ejecutar:
 
