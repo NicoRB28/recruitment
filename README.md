@@ -59,6 +59,7 @@
 > `Bearer {jwt}` para poder ejecutar el resto de endpoints.
 
 ---
+> Al inicializar la aplicación se insertan los siguientes productos: PZOF, CHEQ, TJCREDITO, TJDEBITO
 
 ### 2. Crear cliente
 
